@@ -1,0 +1,43 @@
+.site-header__announcement-bar {
+  display: flex;
+  align-items: center;
+  background-color: $color-accent;
+  position: relative;
+  color: #fff;
+  padding: 20px 36px;
+
+  @include media ($min: $screen-lg) {
+    padding: 10px 36px;
+  }
+}
+
+.site-header__announcement-bar-inner {
+  flex: 1;
+  font-size: 11px;
+  line-height: 15px;
+  text-align: center;
+  margin: 0 16px;
+
+  p {
+    margin: 0;
+  }
+
+  @include media ($min: $screen-lg) {
+    font-size: 14px;
+    line-height: 29px;
+  }
+}
+
+.site-header__announcement-bar-close {
+  width: 15px;
+  height: 15px;
+
+  svg path {
+    stroke: #fff;
+  }
+
+  @include media ($min: $screen-lg) {
+    width: 18px;
+    height: 18px;
+  }
+}

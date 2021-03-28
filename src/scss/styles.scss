@@ -1,0 +1,40 @@
+@import 'variables';
+@import 'tools/mixins';
+@import 'font';
+
+// Core
+@import 'core/layout';
+
+// Vendors
+@import "~swiper/src/swiper";
+
+// Templates
+@import 'templates/collection';
+@import 'templates/product';
+@import 'templates/404';
+@import 'templates/cart';
+@import 'templates/landing-page';
+@import 'templates/page';
+
+// Components
+@import 'components/header';
+@import 'components/announcement-bar';
+@import 'components/footer';
+@import 'components/image-with-text';
+@import 'components/text-columns-with-images';
+@import 'components/newsletter-v2';
+@import 'components/newsletter-v3';
+@import 'components/featured-collection-slider';
+@import 'components/featured-collection-grid';
+@import 'components/product-item';
+@import 'components/related-products';
+@import 'components/instagram-section';
+@import 'components/collection-banner';
+@import 'components/page-banner';
+@import 'components/content-with-slider';
+@import 'components/page-all-collections-banner';
+@import 'components/page-all-collections';
+@import 'components/static-review-section';
+@import 'components/page-top-image';
+@import 'components/recently-viewed';
+@import 'components/sezzle';

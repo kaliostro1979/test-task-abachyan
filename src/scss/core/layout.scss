@@ -1,0 +1,162 @@
+body {
+  font-family: $font-body;
+  padding-top: 53px;
+  background-color: #fff;
+  color: $color-body-text;
+
+  @include media ($min: $screen-lg) {
+    padding-top: 70px;
+  }
+}
+
+html.scrollOff,
+html.scrollOff body {
+  @include media ($max: $screen-lg) {
+    height: 100vh;
+    overflow: hidden;
+  }
+}
+
+img {
+  max-width: 100%;
+}
+
+svg {
+  width: 100%;
+  height: auto;
+}
+
+div.container {
+  width: 100%;
+  max-width: 1170px;
+  padding: 0 36px;
+}
+
+.only-desktop {
+  @include media ($max: $screen-lg) {
+    display: none;
+  }
+}
+
+.only-mobile {
+  @include media ($min: $screen-lg) {
+    display: none;
+  }
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  padding: 15px;
+  background-color: $color-accent;
+  cursor: pointer;
+  z-index: 1;
+  outline: none;
+  transition: background-color 0.2s linear;
+
+  &:hover,
+  &:focus {
+    background-color: #212121;
+  }
+
+  @include media ($min: $screen-md) {
+    width: 70px;
+    height: 70px;
+    padding: 20px;
+  }
+}
+
+.swiper-button-prev {
+  right: 50px;
+
+  @include media ($min: $screen-md) {
+    right: 70px;
+  }
+}
+
+.swiper-pagination {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 20px;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 20px;
+
+  @include media ($min: $screen-lg) {
+    display: none;
+  }
+}
+
+.swiper-pagination-bullet {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #ccc;
+  margin: 0 5px;
+  outline: none;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: #000;
+}
+
+a.button:hover,
+input[type="submit"]:hover,
+input[type="reset"]:hover,
+input[type="button"]:hover,
+.action_button:hover,
+input.action_button[type="submit"]:hover,
+input.action_button[type="button"]:hover,
+input.action_button[type="button"]:hover,
+button.shopify-payment-button__button.shopify-payment-button__button--unbranded:hover {
+  background-color: #212121;
+  border: 1px solid #212121;
+}
+
+.quantity-wrap {
+  display: inline-flex;
+  justify-content: center;
+  height: 35px;
+  border: 1px solid #C7C7C7;
+
+  @include media ($min: $screen-md) {
+    height: 40px;
+  }
+}
+
+.quantity-wrap input {
+  width: 37px;
+  height: 100%;
+  min-height: 1px;
+  font-size: 15px;
+  text-align: center;
+  outline: none;
+  margin-bottom: 0;
+  padding: 0 5px;
+  color: #000;
+  border: none !important;
+}
+
+.quantity-modifier {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  line-height: 1;
+  font-weight: 100;
+  width: 35px;
+  height: 100%;
+  cursor: pointer;
+  border: none !important;
+}
