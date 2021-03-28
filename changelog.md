@@ -5,3 +5,6 @@ All notable changes to this project will be documented in this file.
 ### Added
 - New project start.
 
+## [1.0.1] - 2021-03-28
+### Fixed
+- New project start.

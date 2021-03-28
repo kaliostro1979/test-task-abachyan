@@ -78,7 +78,7 @@ secrets.json
 
 
 node_modules
-package-lock.json
+src/package-lock.json
 *.exe
 *.lock
 *.cmd

@@ -1,8 +1,8 @@
 {
   "name": "ochiis.com",
   "scripts": {
-    "watch": "cross-env NODE_DEV=development webpack --watch --progress",
-    "build": "cross-env NODE_DEV=production webpack --mode production"
+    "watch": "./node_modules/.bin/cross-env NODE_DEV=development webpack --watch --progress",
+    "build": "./node_modules/.bin/cross-env NODE_DEV=production webpack --mode production"
   },
   "repository": {
     "type": "git",
