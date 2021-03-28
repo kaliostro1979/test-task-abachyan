@@ -1,0 +1,29 @@
+<div class="header">
+    <span>{{ section.settings.title }}</span>
+    <ul id="your-menu">
+        {% for link in linklists[section.settings.menu].links %}
+            <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+        {% endfor %}
+    </ul>
+</div>
+
+
+{% schema %}
+    {
+        "name": "Schema Test",
+        "settings": [
+            {
+                "id": "title",
+                "label": "title",
+                "type": "text",
+                "default": "Title"
+            },
+            {
+                "type": "link_list",
+                "id": "menu",
+                "label": "Menu",
+                "default": "main-menu"
+            }
+        ]
+    }
+{% endschema %}
