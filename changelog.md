@@ -14,6 +14,3 @@ All notable changes to this project will be documented in this file.
 ### Fixed
 - Start editing header
 
-## [1.2.0] - 2021-03-29
-### Fixed
-- Header globally updated
