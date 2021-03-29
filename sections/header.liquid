@@ -1,0 +1,59 @@
+
+<div class="navigation-wrapper">
+    <div class="navigation-main">
+        <div class="logo">
+            <a href="/">
+                {% assign logo = section.settings.logo %}
+                {% if logo %}
+                    <img src="{{ logo | img_url: "master"}}" alt="" />
+                {% else %}
+                    <span class="shop-name">{{ shop.name }}</span>
+                {% endif %}
+            </a>
+        </div>
+        <div class="navigation-menu_main">
+            <ul class="navigation-items__list">
+                {% for link in linklists[section.settings.menu].links %}
+                    <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+                {% endfor %}
+            </ul>
+            <div class="navigation-icons">
+                <ul>
+                    <li>
+                        <div class="search-icon">
+                            {% render 'search-icon' %}
+                        </div>
+                    </li>
+                    <li>
+                        <div class="shopping-card-icon">
+                            {% render 'shopping-bag' %}
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+
+
+{% schema %}
+    {
+        "name": "Header",
+        "settings": [
+            {
+                "type": "link_list",
+                "id": "menu",
+                "label": "Menu",
+                "default": "main-menu"
+            },
+            {
+                "type": "image_picker",
+                "id": "logo",
+                "label": "Logo image"
+            }
+        ]
+    }
+{% endschema %}

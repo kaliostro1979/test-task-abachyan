@@ -1,0 +1,8 @@
+{% for collection in collections %}
+    {% if collection.image %}
+        <img src="{{ collection | img_url: '450x450' }}" alt="{{ collection.image.alt }}" />
+    {% else %}
+        <img src="{{ collection.products.first | img_url: '450x450' }}" alt="{{ collection.title | escape  }}" />
+    {% endif %}
+    <a href="{{ collection.url }}">{{ collection.title }}</a>
+{% endfor %}

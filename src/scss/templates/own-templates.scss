@@ -1,0 +1,22 @@
+@import "../variables";
+
+%font_set{
+  font-family: $global_font_family;
+  font-weight: 700;
+}
+
+%flex_template{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+%mobile_menu_border{
+  border-bottom: 1px solid rgba(255,255,255, 0.2)!important;
+}
+
+%background{
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
