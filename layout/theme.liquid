@@ -7,6 +7,9 @@
     <meta name="theme-color" content="">
     <link rel="canonical" href="{{ canonical_url }}">
 
+
+    {{ 'mbc-style.css' | asset_url | stylesheet_tag }}
+
     <title>{{ shop.name }}</title>
 
     <meta name="description" content="">
@@ -15,10 +18,16 @@
     {{ content_for_header }}
 </head>
 
+
 <body>
-    {% section 'header' %}
-    {{ content_for_layout }}
+    <div class="main">
+        {% section 'header' %}
+        {{ content_for_layout }}
+    </div>
 </body>
+
+
+
 
 </html>
 
