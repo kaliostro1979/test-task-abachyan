@@ -1,0 +1,21 @@
+.cart-item__main{
+  display: flex;
+}
+
+.cart-item__price{
+  &-new{
+    font-size: 16px;
+    color: #cc0000;
+  }
+  &-old{
+    color: #B4B4B4;
+    text-decoration: line-through;
+    margin-left: 20px;
+  }
+}
+
+.side-cart-item-info__price__original{
+  color: #B4B4B4;
+  text-decoration: line-through;
+  margin-left: 20px;
+}

@@ -1,0 +1,160 @@
+@import "../variables";
+
+.product-main{
+  padding: 65px 96px;
+  &__title{
+      font-family: 'Goudy Bookletter 1911', serif;
+      font-size: 32px;
+      font-weight: 400;
+  }
+  &__image{
+    height: 524px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+  }
+  &__price{
+    font-size: 36px;
+    color: $red;
+    line-height: 42px;
+    position: relative;
+    margin: 20px 0;
+    span{
+      margin-right: 5px;
+    }
+    small{
+      position: absolute;
+      top: -5px;
+      display: inline-block;
+      vertical-align: super;
+      font-weight: 400;
+      font-size: 13px;
+      color: $text_global_color;
+    }
+  }
+
+  &__variants{
+    position: relative;
+    width: 60%;
+    label{
+      margin-bottom: 6px;
+      display: block;
+    }
+    select{
+      width: 100%;
+      padding: 16px 12px;
+      font-size: 12px;
+      border-color: #D8D8D8;
+      border-radius: 4px;
+      box-shadow: inset 0px -2px 2px rgba(0, 0, 0, 0.13);
+      margin: 0 0 18px;
+      appearance: none;
+      -wbkit-appearance: none;
+      -moz-appearance: none;
+      text-transform: uppercase;
+      &:focus{
+        outline: none;
+      }
+    }
+    &:after{
+      content: "";
+      position: absolute;
+      width: 11px;
+      height: 11px;
+      border-bottom: 1px solid #000000;
+      border-right: 1px solid #000000;
+      top: 46px;
+      right: 29px;
+      pointer-events: none;
+      transform: rotate(45deg);
+    }
+  }
+  &__control-wrapper{
+    display: flex;
+    &__counter{
+      display: flex;
+      input{
+        width: 63px;
+        text-align: center;
+        border-top:1px solid #D8D8D8;
+        border-bottom:1px solid #D8D8D8;
+        border-right:none;
+        border-left:none;
+        background: transparent;
+      }
+      &__btn{
+        padding: 9px 20px;
+        background: transparent;
+        border: 1px solid #D8D8D8;
+        cursor: pointer;
+        font-size: 21px;
+        &:focus{
+          outline: none;
+        }
+      }
+      .increment-btn{
+        border-top-right-radius: 6px;
+        border-bottom-right-radius: 6px;
+      }
+      .decrement-btn{
+        border-top-left-radius: 6px;
+        border-bottom-left-radius: 6px;
+      }
+    }
+    &__add-to-cart-btn{
+      margin-left: 15px;
+      input{
+        padding: 14px 70px;
+        background-color: $red;
+        border: none;
+        border-radius: 4px;
+        color: $white;
+        font-size: 16px;
+        cursor: pointer;
+        display: block;
+        width: 100%;
+        &:hover{
+          color: $white;
+        }
+      }
+    }
+  }
+}
+
+.thumbs{
+  display: flex;
+  margin-top: 16px;
+  overflow-x: auto;
+  &-item{
+    width: 64px;
+    height: 64px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin-right: 16px;
+    cursor: pointer;
+    &:last-child{
+      margin-right: 0;
+    }
+  }
+}
+
+#price-field{
+  position: relative;
+  width: max-content;
+  &:after{
+    content: 'Tax included';
+    color: $text_global_color;
+    font-size: 12px;
+    position: absolute;
+    display: block;
+    top: -7px;
+    right: -78px;
+  }
+  .product-compare-price{
+    color: #B4B4B4;
+    text-decoration: line-through;
+    margin-left: 20px;
+    font-weight: 400;
+  }
+}

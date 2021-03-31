@@ -1,5 +1,24 @@
 
 <div class="navigation-wrapper">
+    <div class="navigation-mobile__wrapper">
+        <div class="navigation-mobile__icon">
+            {% render 'mobile-navigation-icon' %}
+        </div>
+        <div class="logo">
+            <a href="/">
+                {% assign logo = section.settings.logo %}
+                {% if logo %}
+                    <img src="{{ logo | img_url: "master"}}" alt="" />
+                {% else %}
+                    <span class="shop-name">{{ shop.name }}</span>
+                {% endif %}
+            </a>
+        </div>
+        <div class="shopping-card-icon">
+            {% render 'shopping-bag' %}
+            <span class="shopping-card-icon__count">{{ cart.item_count }}</span>
+        </div>
+    </div>
     <div class="navigation-main">
         <div class="logo">
             <a href="/">
@@ -27,6 +46,7 @@
                     <li>
                         <div class="shopping-card-icon">
                             {% render 'shopping-bag' %}
+                            <span class="shopping-card-icon__count">{{ cart.item_count }}</span>
                         </div>
                     </li>
                 </ul>

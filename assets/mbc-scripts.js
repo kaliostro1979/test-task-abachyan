@@ -3576,6 +3576,50 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _scs
 
 /***/ }),
 
+/***/ "./js/components/item-counter.js":
+/*!***************************************!*\
+  !*** ./js/components/item-counter.js ***!
+  \***************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("var decrementBtn = document.querySelectorAll('.decrement-btn');\nvar incrementBtn = document.querySelectorAll('.increment-btn');\n/* ---- Product Counter ---- */\n\nfor (var i = 0; i < decrementBtn.length; i++) {\n  decrementBtn[i].addEventListener('click', function (event) {\n    event.preventDefault();\n    var clickedDecrementButton = event.target;\n    var input = clickedDecrementButton.parentElement.children[1];\n    var inputValue = input.value;\n\n    if (inputValue < 3) {\n      clickedDecrementButton.setAttribute('disabled', true);\n    }\n\n    var newValue = parseInt(inputValue) - 1;\n    input.value = newValue;\n  });\n}\n\nfor (var _i = 0; _i < incrementBtn.length; _i++) {\n  incrementBtn[_i].addEventListener('click', function (event) {\n    event.preventDefault();\n    var clickedIncrementButton = event.target;\n    var input = clickedIncrementButton.parentElement.children[1];\n    var currentDecrementButton = clickedIncrementButton.parentElement.children[0];\n    var inputValue = input.value;\n\n    if (inputValue >= 1) {\n      currentDecrementButton.removeAttribute('disabled');\n    }\n\n    var newValue = parseInt(inputValue) + 1;\n    input.value = newValue;\n  });\n}\n\n//# sourceURL=webpack:///./js/components/item-counter.js?");
+
+/***/ }),
+
+/***/ "./js/components/mobile-menu.js":
+/*!**************************************!*\
+  !*** ./js/components/mobile-menu.js ***!
+  \**************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("var mobileMenuButton = document.querySelector('.navigation-mobile__icon');\nvar mobileMenu = document.querySelector('.mobile-menu');\nvar mobileMenuCloseButton = document.querySelector('.mobile-menu__header-icon');\nmobileMenuButton.addEventListener('click', function () {\n  mobileMenu.classList.add('mobile-menu-open');\n});\nmobileMenuCloseButton.addEventListener('click', function () {\n  mobileMenu.classList.remove('mobile-menu-open');\n});\n\n//# sourceURL=webpack:///./js/components/mobile-menu.js?");
+
+/***/ }),
+
+/***/ "./js/components/side-cart.js":
+/*!************************************!*\
+  !*** ./js/components/side-cart.js ***!
+  \************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("var sideCartBagButton = document.querySelectorAll('.shopping-card-icon');\nvar sideCartCloseButton = document.querySelector('.side-cart__quantity__close');\nvar sideCart = document.querySelector('.side-cart__main');\nvar overlay = document.querySelector('.overlay');\n\nfor (var i = 0; i < sideCartBagButton.length; i++) {\n  sideCartBagButton[i].addEventListener('click', function () {\n    sideCart.classList.add('open-cart');\n    overlay.classList.add('overlay-open');\n  });\n}\n\nsideCartCloseButton.addEventListener('click', function () {\n  sideCart.classList.remove('open-cart');\n  overlay.classList.remove('overlay-open');\n});\noverlay.addEventListener('click', function () {\n  sideCart.classList.remove('open-cart');\n  overlay.classList.remove('overlay-open');\n});\n\n//# sourceURL=webpack:///./js/components/side-cart.js?");
+
+/***/ }),
+
+/***/ "./js/components/slider.js":
+/*!*********************************!*\
+  !*** ./js/components/slider.js ***!
+  \*********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("var largeImage = document.querySelector('.product-main__image');\nvar thumbs = document.querySelectorAll('.thumbs-item');\nthumbs.forEach(function (image) {\n  image.addEventListener('click', function () {\n    var currentImage = image.getAttribute('style');\n    largeImage.setAttribute('style', currentImage);\n  });\n});\n\n//# sourceURL=webpack:///./js/components/slider.js?");
+
+/***/ }),
+
 /***/ "./js/modules/header.js":
 /*!******************************!*\
   !*** ./js/modules/header.js ***!
@@ -3596,7 +3640,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var jque
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _modules_header__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/header */ \"./js/modules/header.js\");\n// Modules\n\n\n//# sourceURL=webpack:///./js/scripts.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _modules_header__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/header */ \"./js/modules/header.js\");\n/* harmony import */ var _components_item_counter__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/item-counter */ \"./js/components/item-counter.js\");\n/* harmony import */ var _components_item_counter__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_components_item_counter__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _components_side_cart__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/side-cart */ \"./js/components/side-cart.js\");\n/* harmony import */ var _components_side_cart__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_components_side_cart__WEBPACK_IMPORTED_MODULE_2__);\n/* harmony import */ var _components_slider__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/slider */ \"./js/components/slider.js\");\n/* harmony import */ var _components_slider__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_components_slider__WEBPACK_IMPORTED_MODULE_3__);\n/* harmony import */ var _components_mobile_menu__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/mobile-menu */ \"./js/components/mobile-menu.js\");\n/* harmony import */ var _components_mobile_menu__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_components_mobile_menu__WEBPACK_IMPORTED_MODULE_4__);\n// Modules\n\n\n\n\n\n\n//# sourceURL=webpack:///./js/scripts.js?");
 
 /***/ }),
 

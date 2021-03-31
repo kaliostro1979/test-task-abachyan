@@ -1,16 +1,95 @@
-<div>Product</div>
 
 
-{% schema %}
-    {
-        "name": "All collections",
-        "settings":
-            [
-                {
-                    "type": "collection",
-                    "label": "All Collection",
-                    "id": "collection"
-                }
-            ]
+<div class="row">
+    <div class="col-lg-12">
+        <div class="product-main">
+            <div class="row">
+                <div class="col-lg-5">
+                    <div class="product-main__image" style="background-image: url('{{ product.featured_image | img_url: 'master' }}')">
+                        {% comment %}<img src="{{ product.featured_image | img_url: 'master' }}" alt="{{product.featured_image.alt}}" />{% endcomment %}
+                    </div>
+                    <div class="thumbs">
+                        {% for image in product.images %}
+                            <div class="thumbs-item" style="background-image: url('{{ image.src | product_img_url: 'medium' }}')">
+                                <a class="gallery" href="{{ image.src | img_url: 'original' }}" data-image-id="{{ image.id }}"></a>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="col-lg-5 mt-lg-0 mt-sm-4">
+                    <div class="product-main__title">
+                        <h1>{{ product.title }}</h1>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 mt-4">
+                            <div class="product-main__variants">
+                                <label for="product-variants">Choose your length</label>
+                                <form action="/cart/add" method="post")>
+                                    <div id="product-variants">
+                                        <select id="product-select" name="id" onchange=selectCallback({{ product.variants }})>
+                                            {% for variant in product.variants %}
+                                                <option value="{{ variant.id }}">{{ variant.title }} - {{ variant.price }}</option>
+                                            {% endfor %}
+                                        </select>
+                                        <div  class="product-main__price" >
+                                            <div  id="price-field"></div>
+
+                                        </div>
+                                    </div>
+                                    <div class="product-main__control-wrapper__counter">
+                                        <button class="product-main__control-wrapper__counter__btn decrement-btn" disabled>-</button>
+                                        <input class="quantity-value" disabled min="1" type="number" id="quantity" name="quantity" value="1">
+                                        <button class="product-main__control-wrapper__counter__btn increment-btn">+</button>
+                                        <div class="product-main__control-wrapper__add-to-cart-btn">
+                                            <input type="submit" value="Add to cart" class="btn" id="add_to-cart-btn"/>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 mt-4">
+                            <div class="product-main__description">
+                                <p>{{ product.description }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+    <script>
+    var selectCallback = function(variant, selector) {
+        if (variant) {
+            if (variant.available) {
+                // Selected a valid variant that is available.
+                $('#add_to-cart-btn').removeClass('disabled').removeAttr('disabled').val('Add to Cart').fadeTo(200,1);
+            } else {
+                // Variant is sold out.
+                $('#add_to-cart-btn').val('Sold Out').addClass('disabled').attr('disabled', 'disabled').fadeTo(200,0.5);
+            }
+            // Whether the variant is in stock or not, we can update the price and compare at price.
+            if ( variant.compare_at_price > variant.price ) {
+                $('#price-field').html('<span class="product-price on-sale">'
+                    + Shopify.formatMoney(variant.price, "")+'</span>'
+                    +'&nbsp;<s class="product-compare-price">'
+                    +Shopify.formatMoney(variant.compare_at_price, "")+ '</s>');
+            } else {
+                $('#price-field').html('<span class="product-price">'+ Shopify.formatMoney(variant.price, "") + '</span>' );
+            }
+        } else {
+            // variant doesn't exist.
+            $('#add_to-cart-btn').val('Unavailable').addClass('disabled').attr('disabled', 'disabled').fadeTo(200,0.5);
+        }
     }
-{% endschema %}
+
+    // initialize multi selector for product
+    new Shopify.OptionSelectors("product-select", { product: {{ product | json }}, onVariantSelected: selectCallback});
+    // ]]>
+</script>

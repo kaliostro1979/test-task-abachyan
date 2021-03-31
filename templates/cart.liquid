@@ -1,0 +1,33 @@
+
+{% for line in cart.items %}
+    <div class="row mb-4">
+        <div class="col-lg-12">
+            <div class="row">
+                <div class="col-lg-1">
+                   <div class="cart-item__image">
+                       <img src="{{ line.image | img_url }}" alt="">
+                   </div>
+                </div>
+                <div class="col-lg-9">
+                    <div class="cart-item__title">
+                       <span>{{ line.title }}</span>
+                    </div>
+                    <div class="cart-item__price">
+                        <span class="cart-item__price-new">{{ line.final_line_price | money }}</span>
+                        <span class="cart-item__price-old">{{ line.variant.compare_at_price | money }}</span>
+                    </div>
+                    <div class="cart-item__quantity">
+                        <span>
+                            {{ line.quantity }}
+                        </span>
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <div class="side-cart-item-info__control">
+                        <a href="/cart/change?line={{ forloop.index }}&quantity=0">Remove</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endfor %}

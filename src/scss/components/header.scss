@@ -86,18 +86,32 @@
 .navigation-icons {
   ul {
     li {
-      position: relative;
       width: 24px;
       margin-left: 24px;
       cursor: pointer;
-      img{
-        position: absolute;
-        top: 0;
-        left: 0;
+      .shopping-card-icon{
+        position: relative;
+        &__count{
+          display: block;
+          position: absolute;
+          top: -5px;
+          left: 15px;
+          width: 16px;
+          height: 16px;
+          background: $red;
+          color: $white;
+          border-radius: 50%;
+          font-size: 9px;
+          font-weight: 400;
+          text-align: center;
+          line-height: 17px;
+        }
       }
     }
   }
 }
 
-
+.navigation-mobile__wrapper{
+  display: none;
+}
 

@@ -1,8 +1,17 @@
-<div>
-   <span>Collections</span>
-      {% for product in collection.products %}
-        <a href="{{ product.url }}"><span>{{ product.title }}</span></a>
-      {% endfor %}
+<div class="row">
+    {% for product in collection.products %}
+        <div class="col-lg-3 mb-4">
+            <div class="products-main">
+                <div class="products-image">
+                    <img src="{{ product.featured_image | img_url: '600x600' }}" alt="{{product.featured_image.alt}}" />
+                </div>
+                <div class="products-title text-center mt-2">
+                    <a href="{{ product.url }}"><span>{{ product.title }}</span></a>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
 </div>
+
 
 

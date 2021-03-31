@@ -1,0 +1,50 @@
+<div class="side-cart__main">
+    <div class="side-cart__quantity">
+        <span>cart ({{ cart.item_count }} items)</span>
+        <div class="side-cart__quantity__close">
+            {% render 'close-icon' %}
+        </div>
+    </div>
+    <div class="side-cart__wrapper">
+        {% for line_item in cart.items %}
+            <div class="side-cart-item mb-5">
+                <div class="side-cart-item__image" style="background-image: url('{{ line_item.image | img_url }}')"></div>
+                <div class="side-cart-item-info">
+                    <div class="side-cart-item-info__title">
+                        <span>{{ line_item.title }}</span>
+                    </div>
+                    <div class="side-cart-item-info__quantity">
+                        <span>Quantity: {{ line_item.quantity }}</span>
+                    </div>
+                    <div class="side-cart-item-info__price">
+                        <span>{{ line_item.final_line_price | money }}</span>
+                        <span class="side-cart-item-info__price__original">{{ line_item.variant.compare_at_price | money }}</span>
+                    </div>
+                    <div class="product-main__control-wrapper__counter">
+                        <button class="product-main__control-wrapper__counter__btn decrement-btn" disabled>-</button>
+                        <input class="quantity-value" disabled min="1" type="number" id="quantity" name="quantity" value="1">
+                        <button class="product-main__control-wrapper__counter__btn increment-btn">+</button>
+                    </div>
+                    <div class="side-cart-item-info__control">
+                        <a href="/cart/change?line={{ forloop.index }}&quantity=0">Remove</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <div class="side-cart__total">
+        <div class="side-cart__total__value">
+            <ul>
+                <li><span>Subtotal</span></li>
+                <li><span>{{ cart.total_price | money }}</span></li>
+            </ul>
+        </div>
+        <div class="side-cart__total__btns">
+            <a href="#">View cart</a>
+            <a href="#">Proceed to checkout</a>
+        </div>
+    </div>
+</div>
+
+
+

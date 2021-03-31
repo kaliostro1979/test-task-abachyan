@@ -1,0 +1,32 @@
+@import "../variables";
+
+.item-counter{
+  display: flex;
+  input{
+    width: 63px;
+    text-align: center;
+    border-top:1px solid #D8D8D8;
+    border-bottom:1px solid #D8D8D8;
+    border-right:none;
+    border-left:none;
+    background: transparent;
+  }
+  &__btn{
+    padding: 9px 20px;
+    background: transparent;
+    border: 1px solid #D8D8D8;
+    cursor: pointer;
+    font-size: 21px;
+    &:focus{
+      outline: none;
+    }
+  }
+  .increment-btn{
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+  }
+  .decrement-btn{
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+  }
+}
