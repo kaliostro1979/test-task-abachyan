@@ -12,6 +12,9 @@
 body {
   @extend %font_set;
   color: $text_global_color;
+  &.covered{
+    overflow: hidden;
+  }
 }
 
 body a {

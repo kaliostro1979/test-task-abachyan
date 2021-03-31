@@ -14,3 +14,7 @@ All notable changes to this project will be documented in this file.
 ### Added
 - New project complete.
 
+## [2.0.1] - 2021-03-28
+### Fixed
+- Scroll on document locked when side cart is open
+
