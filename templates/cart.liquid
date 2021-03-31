@@ -10,7 +10,7 @@
                 </div>
                 <div class="col-lg-9">
                     <div class="cart-item__title">
-                       <span>{{ line.title }}</span>
+                        <a href="{{ line.url }}"><span> {{ line.title }}</span></a>
                     </div>
                     <div class="cart-item__price">
                         <span class="cart-item__price-new">{{ line.final_line_price | money }}</span>

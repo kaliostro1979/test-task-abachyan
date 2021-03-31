@@ -11,7 +11,7 @@
                 <div class="side-cart-item__image" style="background-image: url('{{ line_item.image | img_url }}')"></div>
                 <div class="side-cart-item-info">
                     <div class="side-cart-item-info__title">
-                        <span>{{ line_item.title }}</span>
+                        <a href="{{ line_item.url }}"><span>{{ line_item.title }}</span></a>
                     </div>
                     <div class="side-cart-item-info__quantity">
                         <span>Quantity: {{ line_item.quantity }}</span>

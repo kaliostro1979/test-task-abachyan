@@ -6,7 +6,6 @@
             <div class="row">
                 <div class="col-lg-5">
                     <div class="product-main__image" style="background-image: url('{{ product.featured_image | img_url: 'master' }}')">
-                        {% comment %}<img src="{{ product.featured_image | img_url: 'master' }}" alt="{{product.featured_image.alt}}" />{% endcomment %}
                     </div>
                     <div class="thumbs">
                         {% for image in product.images %}
@@ -33,12 +32,11 @@
                                         </select>
                                         <div  class="product-main__price" >
                                             <div  id="price-field"></div>
-
                                         </div>
                                     </div>
                                     <div class="product-main__control-wrapper__counter">
                                         <button class="product-main__control-wrapper__counter__btn decrement-btn" disabled>-</button>
-                                        <input class="quantity-value" disabled min="1" type="number" id="quantity" name="quantity" value="1">
+                                        <input class="quantity-value" disabled min="1" type="text" id="quantity" name="quantity" value="1">
                                         <button class="product-main__control-wrapper__counter__btn increment-btn">+</button>
                                         <div class="product-main__control-wrapper__add-to-cart-btn">
                                             <input type="submit" value="Add to cart" class="btn" id="add_to-cart-btn"/>
