@@ -18,3 +18,7 @@ All notable changes to this project will be documented in this file.
 ### Fixed
 - Scroll on document locked when side cart is open
 
+## [2.0.2] - 2021-03-28
+### Fixed
+- Links added to product titles in cart and side-cart
+
