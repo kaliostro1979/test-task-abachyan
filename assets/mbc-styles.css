@@ -9962,6 +9962,9 @@ body {
 body {
   color: #202020;
 }
+body.covered {
+  overflow: hidden;
+}
 
 body a {
   text-decoration: none;
