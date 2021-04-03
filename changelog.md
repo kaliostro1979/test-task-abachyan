@@ -34,3 +34,9 @@ All notable changes to this project will be documented in this file.
 ## [2.1.2] - 2021-03-28
 ### Fixed
 - Overlay section and Side Cart section marked as snippet and removed from customization bar
+
+## [2.2.0] - 2021-03-28
+### Added
+- Related products title and subtitle colors change from customization bar
+- Hide or show "Recommended products" section from customization bar
+

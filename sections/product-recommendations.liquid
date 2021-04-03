@@ -1,9 +1,51 @@
-<h3>You may interested</h3>
-<div class="product-recommendations__list row mt-4 mb-5"
-     data-base-url="{{ routes.product_recommendations_url }}"
-     data-product-id="{{ product.id }}">
+
+<div class="recommend-wrapper"
+     style="display:{% if section.settings.show %}none{% endif %} ">
+    <h3 style="color: {{ section.settings.title_color }}">{{ section.settings.recommended_title }}</h3>
+    <h4 style="color: {{ section.settings.subtitle_color }}">{{ section.settings.recommended_sub_title }}</h4>
+    <div class="product-recommendations__list row mt-4 mb-5"
+         data-base-url="{{ routes.product_recommendations_url }}"
+         data-product-id="{{ product.id }}"
+    >
+    </div>
 </div>
 
 
+
+{% schema %}
+
+    {
+        "name": "Recommended products",
+        "settings": [
+                        {
+                            "type": "text",
+                            "label": "Recommended title",
+                            "id": "recommended_title"
+                        },
+                        {
+                            "type": "text",
+                            "label": "Recommended subtitle",
+                            "id": "recommended_sub_title"
+                        },
+                        {
+                            "type": "color",
+                            "label": "Title color",
+                            "id": "title_color"
+                        },
+                        {
+                            "type": "color",
+                            "label": "Subtitle color",
+                            "id": "subtitle_color"
+                        },
+                        {
+                            "type": "checkbox",
+                            "label": "Hide block",
+                            "id": "show",
+                            "default": false
+                        }
+                    ]
+    }
+
+{% endschema %}
 
 
