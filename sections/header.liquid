@@ -57,6 +57,28 @@
 
 
 </div>
+<div class="mobile-menu">
+    <div class="mobile-menu__header">
+        <div class="mobile-menu__header-icon">
+            {% render 'close-icon-light' %}
+        </div>
+    </div>
+    <div class="mobile-menu-wrapper">
+        <ul class="mobile-menu-wrapper__list">
+            <li class="mobile-menu-wrapper__list-search">
+                <form>
+                    <input type="text" placeholder="Type your search">
+                    <div class="mobile-menu-wrapper__list-search-icon">
+                        <button>{% render 'search-icon-light' %}</button>
+                    </div>
+                </form>
+            </li>
+            {% for link in linklists[section.settings.menu].links %}
+                <li class="mobile-menu-wrapper__list-item"><a href="{{ link.url }}">{{ link.title }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
 
 
 {% schema %}

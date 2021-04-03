@@ -24,12 +24,11 @@
 </head>
 
 
-<body>
+<body class="{{ template | replace: '.', ' ' | truncatewords: 1, '' }}" id="{{ page_title | handle }}">
     {% section 'cart-side' %}
     {% section 'overlay' %}
-    {% section 'mobile-menu' %}
+    {% section 'header' %}
     <div class="main">
-        {% section 'header' %}
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12">
