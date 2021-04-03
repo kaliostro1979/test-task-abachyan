@@ -110,6 +110,18 @@ eval("\n\n__webpack_require__(/*! core-js/es6 */ \"../node_modules/core-js/es6/i
 
 /***/ }),
 
+/***/ "../node_modules/@shopify/theme-currency/currency.js":
+/*!***********************************************************!*\
+  !*** ../node_modules/@shopify/theme-currency/currency.js ***!
+  \***********************************************************/
+/*! exports provided: formatMoney */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"formatMoney\", function() { return formatMoney; });\n/**\n * Currency Helpers\n * -----------------------------------------------------------------------------\n * A collection of useful functions that help with currency formatting\n *\n * Current contents\n * - formatMoney - Takes an amount in cents and returns it as a formatted dollar value.\n *\n */\n\nconst moneyFormat = '${{amount}}';\n\n/**\n * Format money values based on your shop currency settings\n * @param  {Number|string} cents - value in cents or dollar amount e.g. 300 cents\n * or 3.00 dollars\n * @param  {String} format - shop money_format setting\n * @return {String} value - formatted value\n */\nfunction formatMoney(cents, format) {\n  if (typeof cents === 'string') {\n    cents = cents.replace('.', '');\n  }\n  let value = '';\n  const placeholderRegex = /\\{\\{\\s*(\\w+)\\s*\\}\\}/;\n  const formatString = format || moneyFormat;\n\n  function formatWithDelimiters(\n    number,\n    precision = 2,\n    thousands = ',',\n    decimal = '.'\n  ) {\n    if (isNaN(number) || number == null) {\n      return 0;\n    }\n\n    number = (number / 100.0).toFixed(precision);\n\n    const parts = number.split('.');\n    const dollarsAmount = parts[0].replace(\n      /(\\d)(?=(\\d\\d\\d)+(?!\\d))/g,\n      `$1${thousands}`\n    );\n    const centsAmount = parts[1] ? decimal + parts[1] : '';\n\n    return dollarsAmount + centsAmount;\n  }\n\n  switch (formatString.match(placeholderRegex)[1]) {\n    case 'amount':\n      value = formatWithDelimiters(cents, 2);\n      break;\n    case 'amount_no_decimals':\n      value = formatWithDelimiters(cents, 0);\n      break;\n    case 'amount_with_comma_separator':\n      value = formatWithDelimiters(cents, 2, '.', ',');\n      break;\n    case 'amount_no_decimals_with_comma_separator':\n      value = formatWithDelimiters(cents, 0, '.', ',');\n      break;\n  }\n\n  return formatString.replace(placeholderRegex, value);\n}\n\n\n//# sourceURL=webpack:///../node_modules/@shopify/theme-currency/currency.js?");
+
+/***/ }),
+
 /***/ "../node_modules/core-js/es6/index.js":
 /*!********************************************!*\
   !*** ../node_modules/core-js/es6/index.js ***!
@@ -3620,6 +3632,18 @@ eval("var largeImage = document.querySelector('.product-main__image');\nvar thum
 
 /***/ }),
 
+/***/ "./js/modules/addToCart.js":
+/*!*********************************!*\
+  !*** ./js/modules/addToCart.js ***!
+  \*********************************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ \"../node_modules/jquery/dist/jquery.js\");\n/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);\nfunction asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }\n\nfunction _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, \"next\", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, \"throw\", err); } _next(undefined); }); }; }\n\n\njquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {\n  var addButton = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.product-main__control-wrapper__add-to-cart-btn');\n  var addToCartForm = document.querySelector('#add__item-form');\n  jquery__WEBPACK_IMPORTED_MODULE_0___default()(addButton).on('click', /*#__PURE__*/function () {\n    var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(e) {\n      var formData, fetchCardItems, _fetchCardItems;\n\n      return regeneratorRuntime.wrap(function _callee2$(_context2) {\n        while (1) {\n          switch (_context2.prev = _context2.next) {\n            case 0:\n              _fetchCardItems = function _fetchCardItems3() {\n                _fetchCardItems = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {\n                  return regeneratorRuntime.wrap(function _callee$(_context) {\n                    while (1) {\n                      switch (_context.prev = _context.next) {\n                        case 0:\n                          _context.next = 2;\n                          return fetch('/cart.js').then(function (res) {\n                            return res.json();\n                          }).then(function (data) {\n                            return data;\n                          });\n\n                        case 2:\n                        case \"end\":\n                          return _context.stop();\n                      }\n                    }\n                  }, _callee);\n                }));\n                return _fetchCardItems.apply(this, arguments);\n              };\n\n              fetchCardItems = function _fetchCardItems2() {\n                return _fetchCardItems.apply(this, arguments);\n              };\n\n              e.preventDefault();\n              formData = new FormData(addToCartForm ? addToCartForm : '');\n              _context2.next = 6;\n              return fetch('/cart/add.js', {\n                method: 'POST',\n                body: formData\n              }).then(function (response) {\n                return response.json();\n              }).then(function (data) {\n                if (data) {\n                  fetchCardItems();\n                  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.side-cart__main').addClass('open-cart');\n                  jquery__WEBPACK_IMPORTED_MODULE_0___default()('body').addClass('covered');\n                  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.overlay').addClass('overlay-open');\n                }\n              }).catch(function (error) {\n                console.error('Error:', error);\n              });\n\n            case 6:\n            case \"end\":\n              return _context2.stop();\n          }\n        }\n      }, _callee2);\n    }));\n\n    return function (_x) {\n      return _ref.apply(this, arguments);\n    };\n  }());\n});\n\n//# sourceURL=webpack:///./js/modules/addToCart.js?");
+
+/***/ }),
+
 /***/ "./js/modules/header.js":
 /*!******************************!*\
   !*** ./js/modules/header.js ***!
@@ -3632,6 +3656,18 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var jque
 
 /***/ }),
 
+/***/ "./js/modules/recommended-products.js":
+/*!********************************************!*\
+  !*** ./js/modules/recommended-products.js ***!
+  \********************************************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _shopify_theme_currency__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @shopify/theme-currency */ \"../node_modules/@shopify/theme-currency/currency.js\");\n\nvar list = document.querySelector(\".product-recommendations__list\");\nvar productId = list.dataset.productId;\n\nfunction renderProduct(product) {\n  return \"\\n        <div class=\\\"col-lg-2\\\">\\n            <a href=\\\"\".concat(product.url, \"\\\" class=\\\"product__anchor\\\">\\n                <img class=\\\"product__img\\\" src=\\\"\").concat(product.featured_image, \"\\\" alt=\\\"\").concat(product.title, \"\\\"/>\\n                <p class=\\\"product__title\\\">\").concat(product.title, \"</p>\\n                <p class=\\\"product__price\\\">\").concat(Object(_shopify_theme_currency__WEBPACK_IMPORTED_MODULE_0__[\"formatMoney\"])(product.price, window.moneyFormat), \"</p>\\n            </a>\\n        </div>\\n    \");\n}\n\nfetch(\"/recommendations/products.json?product_id=\".concat(productId, \"&limit=6\")).then(function (response) {\n  return response.json();\n}).then(function (_ref) {\n  var products = _ref.products;\n\n  if (products.length > 0) {\n    list.innerHTML = products.map(function (item) {\n      return renderProduct(item);\n    }).join(\"\");\n  } else {\n    list.style.display = 'none';\n  }\n});\n\n//# sourceURL=webpack:///./js/modules/recommended-products.js?");
+
+/***/ }),
+
 /***/ "./js/scripts.js":
 /*!***********************!*\
   !*** ./js/scripts.js ***!
@@ -3640,7 +3676,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var jque
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _modules_header__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/header */ \"./js/modules/header.js\");\n/* harmony import */ var _components_item_counter__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/item-counter */ \"./js/components/item-counter.js\");\n/* harmony import */ var _components_item_counter__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_components_item_counter__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _components_side_cart__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/side-cart */ \"./js/components/side-cart.js\");\n/* harmony import */ var _components_side_cart__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_components_side_cart__WEBPACK_IMPORTED_MODULE_2__);\n/* harmony import */ var _components_slider__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/slider */ \"./js/components/slider.js\");\n/* harmony import */ var _components_slider__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_components_slider__WEBPACK_IMPORTED_MODULE_3__);\n/* harmony import */ var _components_mobile_menu__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/mobile-menu */ \"./js/components/mobile-menu.js\");\n/* harmony import */ var _components_mobile_menu__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_components_mobile_menu__WEBPACK_IMPORTED_MODULE_4__);\n// Modules\n\n\n\n\n\n\n//# sourceURL=webpack:///./js/scripts.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _modules_header__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/header */ \"./js/modules/header.js\");\n/* harmony import */ var _components_item_counter__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/item-counter */ \"./js/components/item-counter.js\");\n/* harmony import */ var _components_item_counter__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_components_item_counter__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _components_side_cart__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/side-cart */ \"./js/components/side-cart.js\");\n/* harmony import */ var _components_side_cart__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_components_side_cart__WEBPACK_IMPORTED_MODULE_2__);\n/* harmony import */ var _components_slider__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/slider */ \"./js/components/slider.js\");\n/* harmony import */ var _components_slider__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_components_slider__WEBPACK_IMPORTED_MODULE_3__);\n/* harmony import */ var _components_mobile_menu__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/mobile-menu */ \"./js/components/mobile-menu.js\");\n/* harmony import */ var _components_mobile_menu__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_components_mobile_menu__WEBPACK_IMPORTED_MODULE_4__);\n/* harmony import */ var _modules_addToCart__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/addToCart */ \"./js/modules/addToCart.js\");\n/* harmony import */ var _modules_recommended_products__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modules/recommended-products */ \"./js/modules/recommended-products.js\");\n// Modules\n\n\n\n\n\n\n\n\n//# sourceURL=webpack:///./js/scripts.js?");
 
 /***/ }),
 

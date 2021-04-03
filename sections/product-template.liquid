@@ -23,7 +23,7 @@
                         <div class="col-md-12 mt-4">
                             <div class="product-main__variants">
                                 <label for="product-variants">Choose your length</label>
-                                <form action="/cart/add" method="post")>
+                                <form method="post" id="add__item-form">
                                     <div id="product-variants">
                                         <select id="product-select" name="id" onchange=selectCallback({{ product.variants }})>
                                             {% for variant in product.variants %}
@@ -36,7 +36,7 @@
                                     </div>
                                     <div class="product-main__control-wrapper__counter">
                                         <button class="product-main__control-wrapper__counter__btn decrement-btn" disabled>-</button>
-                                        <input class="quantity-value" disabled min="1" type="text" id="quantity" name="quantity" value="1">
+                                        <input class="quantity-value" min="1" type="text" id="quantity" name="quantity" value="1">
                                         <button class="product-main__control-wrapper__counter__btn increment-btn">+</button>
                                         <div class="product-main__control-wrapper__add-to-cart-btn">
                                             <input type="submit" value="Add to cart" class="btn" id="add_to-cart-btn"/>
