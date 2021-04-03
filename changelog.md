@@ -31,4 +31,6 @@ All notable changes to this project will be documented in this file.
 ### Fixed
 - Bug with two headers in customization bar fixed
 
-
+## [2.1.2] - 2021-03-28
+### Fixed
+- Overlay section and Side Cart section marked as snippet and removed from customization bar
