@@ -22,7 +22,7 @@
                     </div>
                     <div class="product-main__control-wrapper__counter">
                         <button class="product-main__control-wrapper__counter__btn decrement-btn" disabled>-</button>
-                        <input class="quantity-value" disabled min="1" type="number" id="quantity" name="quantity" value="1">
+                        <input class="quantity-value" disabled min="1" type="number" id="quantity" name="quantity" value="{{ line_item.quantity }}">
                         <button class="product-main__control-wrapper__counter__btn increment-btn">+</button>
                     </div>
                     <div class="side-cart-item-info__control">
@@ -41,7 +41,7 @@
         </div>
         <div class="side-cart__total__btns">
             <a href="#">View cart</a>
-            <a href="#">Proceed to checkout</a>
+            <a href="/checkout" class="btn btn--small-wide">Processed to checkout</a>
         </div>
     </div>
 </div>

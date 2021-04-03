@@ -22,3 +22,8 @@ All notable changes to this project will be documented in this file.
 ### Fixed
 - Links added to product titles in cart and side-cart
 
+## [2.1.0] - 2021-03-28
+### Fixed
+- Related products section added
+- Checkout page link edited
+

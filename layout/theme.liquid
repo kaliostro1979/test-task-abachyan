@@ -11,13 +11,16 @@
 
     {{ 'mbc-styles.css' | asset_url | stylesheet_tag }}
 
-
     <title>{{ shop.name }}</title>
 
     <meta name="description" content="">
 
-
     {{ content_for_header }}
+
+    <script>
+        window.moneyFormat = {{ shop.money_format | json }}
+    </script>
+
 </head>
 
 
