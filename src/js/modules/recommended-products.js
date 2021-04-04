@@ -5,7 +5,7 @@ let productId = list.dataset.productId
 
 function renderProduct(product) {
     return `
-        <div class="col-lg-2">
+        <div class="col-lg-2 col-sm-6">
             <a href="${product.url}" class="product__anchor">
                 <img class="product__img" src="${product.featured_image}" alt="${product.title}"/>
                 <p class="product__title">${product.title}</p>
