@@ -7,7 +7,7 @@
     </div>
     <div class="side-cart__wrapper">
         {% for line_item in cart.items %}
-            <div class="side-cart-item mb-5">
+            <div class="side-cart-item mb-5" id="{{ line_item.id }}">
                 <div class="side-cart-item__image" style="background-image: url('{{ line_item.image | img_url }}')"></div>
                 <div class="side-cart-item-info">
                     <div class="side-cart-item-info__title">
@@ -20,14 +20,15 @@
                         <span>{{ line_item.final_line_price | money }}</span>
                         <span class="side-cart-item-info__price__original">{{ line_item.variant.compare_at_price | money }}</span>
                     </div>
+
                     <div class="product-main__control-wrapper__counter">
                         <button class="product-main__control-wrapper__counter__btn decrement-btn" disabled>-</button>
                         <input class="quantity-value" disabled min="1" type="number" id="quantity" name="quantity" value="{{ line_item.quantity }}">
                         <button class="product-main__control-wrapper__counter__btn increment-btn">+</button>
                     </div>
-                    <div class="side-cart-item-info__control">
-                        <a href="/cart/change?line={{ forloop.index }}&quantity=0">Remove</a>
-                    </div>
+                        <div class="side-cart-item-info__control">
+                            <a href="/cart/change?line={{ forloop.index }}&quantity=0" rel="{{ line_item.id }}">Remove</a>
+                        </div>
                 </div>
             </div>
         {% endfor %}
@@ -40,7 +41,7 @@
             </ul>
         </div>
         <div class="side-cart__total__btns">
-            <a href="#">View cart</a>
+            <a href="/cart">View cart</a>
             <a href="/checkout" class="btn btn--small-wide">Processed to checkout</a>
         </div>
     </div>

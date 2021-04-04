@@ -1,4 +1,5 @@
 import $ from 'jquery';
+import {formatMoney} from "@shopify/theme-currency";
 
 
 $(document).ready(() => {
@@ -30,9 +31,67 @@ $(document).ready(() => {
         async function fetchCardItems(){
             await fetch('/cart.js')
                 .then(res=>res.json())
-                .then(data=>data)
+                .then(data=>{
+                    renderCart(data)
+                })
         }
 
     })
+
+    function renderCart(data){
+        $('.side-cart__wrapper').html(
+            data.items.map((item, index)=>{
+               return `    
+            <div class="side-cart-item mb-5">
+                <div class="side-cart-item__image" style="background-image: url(${item.image})"></div>
+                <div class="side-cart-item-info">
+                    <div class="side-cart-item-info__title">
+                        <a href=${item.url}><span>${item.title}</span></a>
+                    </div>
+                    <div class="side-cart-item-info__quantity">
+                        <span>Quantity: ${item.quantity}</span>
+                    </div>
+                    <div class="side-cart-item-info__price">
+                        <span>${formatMoney(item.line_price, window.moneyFormat)}</span>
+                      
+                        <span class="side-cart-item-info__price__original">${formatMoney(item.final_line_price, window.moneyFormat)}</span>
+                    </div>
+                   
+                        <div class="product-main__control-wrapper__counter">
+                            <button class="product-main__control-wrapper__counter__btn decrement-btn" disabled>-</button>
+                            <input class="quantity-value" disabled min="1" type="number" id="quantity" name="quantity" value="${item.quantity}">
+                            <button class="product-main__control-wrapper__counter__btn increment-btn">+</button>
+                        </div>
+                        <div class="side-cart-item-info__control">
+                            <a href="/cart/change?line=${index+1}&quantity=0" rel="${item.id}">Remove</a>
+                        </div>
+                </div>
+            </div>
+            `
+            })
+        )
+    }
+
+    /*$('.side-cart-item-info__control button').on('click', function (e){
+        const itemId = $(this).parents('.side-cart-item').attr('id')
+        console.log(itemId);
+        removeThis(itemId)
+    })
+
+    function removeThis(itemId) {
+        fetch('/cart/change.js', {
+            method: 'POST',
+            updates:{
+                id:itemId,
+                quantity: 0
+            }
+        })
+            .then(res=>{
+                return res.json()
+            })
+            .then((data)=>{
+                console.log(data);
+            })
+    }*/
 })
 
