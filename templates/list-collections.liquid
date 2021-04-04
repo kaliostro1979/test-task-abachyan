@@ -1,8 +1,18 @@
-{% for collection in collections %}
-    {% if collection.image %}
-        <img src="{{ collection | img_url: '450x450' }}" alt="{{ collection.image.alt }}" />
-    {% else %}
-        <img src="{{ collection.products.first | img_url: '450x450' }}" alt="{{ collection.title | escape  }}" />
-    {% endif %}
-    <a href="{{ collection.url }}">{{ collection.title }}</a>
-{% endfor %}
+<div class="row">
+    {% for collection in collections %}
+        <div class="col-lg-4">
+            <div class="catalog-wrapper">
+                <div class="catalog-image">
+                    {% if collection.image %}
+                        <img src="{{ collection | img_url: '450x450' }}" alt="{{ collection.image.alt }}" />
+                    {% else %}
+                        <img src="{{ collection.products.first | img_url: '450x450' }}" alt="{{ collection.title | escape  }}" />
+                    {% endif %}
+                </div>
+                <div class="datalog-title">
+                    <a href="{{ collection.url }}">{{ collection.title }}</a>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>

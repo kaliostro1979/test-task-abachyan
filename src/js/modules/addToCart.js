@@ -53,8 +53,6 @@ $(document).ready(() => {
                     </div>
                     <div class="side-cart-item-info__price">
                         <span>${formatMoney(item.line_price, window.moneyFormat)}</span>
-                      
-                        <span class="side-cart-item-info__price__original">${formatMoney(item.final_line_price, window.moneyFormat)}</span>
                     </div>
                    
                         <div class="product-main__control-wrapper__counter">
@@ -70,28 +68,9 @@ $(document).ready(() => {
             `
             })
         )
+        $('.shopping-card-icon__count').html(data.item_count)
+        $('.side-cart__quantity span').html('cart ( ' + data.item_count + ' items )')
+        $('.side-cart__total_price').html(formatMoney(data.original_total_price, window.moneyFormat))
     }
-
-    /*$('.side-cart-item-info__control button').on('click', function (e){
-        const itemId = $(this).parents('.side-cart-item').attr('id')
-        console.log(itemId);
-        removeThis(itemId)
-    })
-
-    function removeThis(itemId) {
-        fetch('/cart/change.js', {
-            method: 'POST',
-            updates:{
-                id:itemId,
-                quantity: 0
-            }
-        })
-            .then(res=>{
-                return res.json()
-            })
-            .then((data)=>{
-                console.log(data);
-            })
-    }*/
 })
 

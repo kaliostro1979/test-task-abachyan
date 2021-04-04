@@ -1,7 +1,7 @@
+import $ from 'jquery';
 import {formatMoney} from "@shopify/theme-currency";
 
-let list = document.querySelector(".product-recommendations__list")
-let productId = list.dataset.productId
+
 
 function renderProduct(product) {
     return `
@@ -15,15 +15,18 @@ function renderProduct(product) {
     `
 }
 
-
-fetch(`/recommendations/products.json?product_id=${productId}&limit=6`)
-    .then(response => response.json())
-    .then(({ products }) => {
-        if (products.length > 0) {
-            list.innerHTML = products.map((item)=>{
-                return renderProduct(item)
-            }).join("")
-        }else{
-            list.style.display = 'none'
-        }
-    });
+$('.recommend-wrapper').ready(async ()=>{
+    let list = document.querySelector(".product-recommendations__list")
+    let productId = list.dataset.productId
+    await fetch(`/recommendations/products.json?product_id=${productId}&limit=6`)
+        .then(response => response.json())
+        .then(({ products }) => {
+            if (products.length > 0) {
+                list.innerHTML = products.map((item)=>{
+                    return renderProduct(item)
+                }).join("")
+            }else{
+                list.style.display = 'none'
+            }
+        });
+})
