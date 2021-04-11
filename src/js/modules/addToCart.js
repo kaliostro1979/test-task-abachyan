@@ -18,23 +18,23 @@ $(document).ready(() => {
             })
             .then((data)=>{
                 if(data){
-                   fetchCardItems()
+                   /*fetchCardItems()
                     $('.side-cart__main').addClass('open-cart')
                     $('body').addClass('covered')
-                    $('.overlay').addClass('overlay-open')
+                    $('.overlay').addClass('overlay-open')*/
                 }
             })
             .catch((error) => {
                 console.error('Error:', error);
             });
 
-        async function fetchCardItems(){
+        /*async function fetchCardItems(){
             await fetch('/cart.js')
                 .then(res=>res.json())
                 .then(data=>{
                     renderCart(data)
                 })
-        }
+        }*/
 
     })
 
