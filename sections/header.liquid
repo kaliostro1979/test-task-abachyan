@@ -14,10 +14,10 @@
                 {% endif %}
             </a>
         </div>
-        <div class="shopping-card-icon">
+        {% comment %}<div class="shopping-card-icon">
             {% render 'shopping-bag' %}
             <span class="shopping-card-icon__count">{{ cart.item_count }}</span>
-        </div>
+        </div>{% endcomment %}
     </div>
     <div class="navigation-main">
         <div class="logo">
@@ -44,10 +44,10 @@
                         </div>
                     </li>
                     <li>
-                        {% comment %}<div class="shopping-card-icon">
+                        <div class="shopping-card-icon" id="header-cart__icon">
                             {% render 'shopping-bag' %}
                             <span class="shopping-card-icon__count">{{ cart.item_count }}</span>
-                        </div>{% endcomment %}
+                        </div>
                     </li>
                 </ul>
             </div>

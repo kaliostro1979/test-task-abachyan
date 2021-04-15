@@ -68,7 +68,7 @@ $(document).ready(() => {
             `
             })
         )
-        $('.shopping-card-icon__count').html(data.item_count)
+        /*$('.shopping-card-icon__count').html(data.item_count)*/
         $('.side-cart__quantity span').html('cart ( ' + data.item_count + ' items )')
         $('.side-cart__total_price').html(formatMoney(data.original_total_price, window.moneyFormat))
     }

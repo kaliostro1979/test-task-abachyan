@@ -6,13 +6,13 @@ let body = document.querySelector('body')
 
 
 
-for (let i = 0; i < sideCartBagButton.length; i++){
+/*for (let i = 0; i < sideCartBagButton.length; i++){
     sideCartBagButton[i].addEventListener('click', function (){
         sideCart.classList.add('open-cart')
         overlay.classList.add('overlay-open')
         body.classList.add('covered')
     })
-}
+}*/
 
 sideCartCloseButton.addEventListener('click', ()=>{
     sideCart.classList.remove('open-cart')
