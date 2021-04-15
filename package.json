@@ -28,11 +28,15 @@
     "@babel/polyfill": "^7.8.7",
     "@babel/preset-react": "^7.13.13",
     "@shopify/theme-currency": "^4.1.1",
+    "@shopify/theme-sections": "^4.1.1",
     "bootstrap": "^4.6.0",
     "browserslist": "^4.16.3",
     "jquery": "^3.5.1",
+    "js-cookie": "^2.2.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-router": "^5.2.0",
+    "react-router-dom": "^5.2.0",
     "swiper": "^5.4.1"
   }
 }

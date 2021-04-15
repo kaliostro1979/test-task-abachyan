@@ -7,6 +7,8 @@ import './components/mobile-menu'
 import './modules/addToCart'
 import './modules/recommended-products'
 import './react/index'
+import './react/recently-viewed'
+import './vendors/recently-viewed'
 
 
 

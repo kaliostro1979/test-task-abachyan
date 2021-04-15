@@ -5,13 +5,12 @@ import AddToCartForm from "@/js/react/components/AddToCartForm";
 
 const Cart = () => {
 
-    const [products, setProducts] = useState([])
-    const [productCount, setProductCount] = useState(0)
-    const [currency, setCurrency] = useState('')
-    const [totalPrice, setTotalPrice] = useState(0)
+    const {products, productData, productCount, currency, totalPrice, isClicked, setProducts,setIsClicked} = useContext(Context)
+
+
     const [open, setOpen] = useState(false)
     const [quantity, setQuantity] = useState(0)
-    const [isClicked, setIsClicked] = useState(false)
+
 
     const addButton = document.querySelector('.product-main__control-wrapper__add-to-cart-btn')
     const sideCartButton = document.querySelectorAll('.shopping-card-icon')
@@ -40,18 +39,6 @@ const Cart = () => {
         productData().then()
     }, [open, isClicked, productCount])
 
-
-    const productData = async ()=>{
-        await fetch('/cart.js')
-            .then(res => res.json())
-            .then(data => {
-                setProducts(data.items)
-                setProductCount(data.item_count)
-                setCurrency(data.currency)
-                setTotalPrice(data.total_price)
-                setIsClicked(false)
-            })
-    }
 
     const removeItem = async (id)=>{
         await fetch('/cart/change.js',{

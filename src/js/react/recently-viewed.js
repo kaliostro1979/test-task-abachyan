@@ -1,17 +1,13 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
-import App from "@/js/react/components/App";
+import ReactDOM from "react-dom";
 import {Provider} from "@/js/react/context/context";
 import RecentlyViewedProducts from "@/js/react/components/RecentliViewedProducts";
 
-
 ReactDOM.render(
     <React.StrictMode>
-        <Provider>
-            <App/>
-        </Provider>
+            <Provider>
+                <RecentlyViewedProducts/>
+            </Provider>
     </React.StrictMode>,
-    document.getElementById('root')
+    document.getElementById('recently-viewed')
 );
-
-

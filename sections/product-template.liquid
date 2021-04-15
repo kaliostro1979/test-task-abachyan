@@ -1,8 +1,7 @@
 
-
 <div class="row">
     <div class="col-lg-12">
-        <div class="product-main">
+        <div class="product-main" data-section-type="product" data-enable-history-state="true">
             <div class="row">
                 <div class="col-lg-5">
                     <div class="product-main__image" style="background-image: url('{{ product.featured_image | img_url: 'master' }}')">
@@ -41,7 +40,6 @@
                                         <div class="product-main__control-wrapper__add-to-cart-btn">
                                             <input type="submit" value="Add to cart" class="btn" id="add_to-cart-btn"/>
                                         </div>
-                                        <div id="form"></div>
                                     </div>
                                 </form>
                             </div>
@@ -59,6 +57,7 @@
         </div>
     </div>
 </div>
+{% render 'recently-products' %}
 
 
 
