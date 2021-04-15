@@ -10601,31 +10601,6 @@ body {
   background-repeat: no-repeat;
 }
 
-/*.shopping-card-icon{
-  position: absolute;
-  right: 34px;
-  top: 22px;
-}*/
-/*.product-main__control-wrapper__add-to-cart-btn{
-  position: absolute;
-  top: 43%;
-  right: 35%;
-  z-index: 2;
-}*/
-/*.shopping-card-icon__count{
-  position: absolute;
-  left: 15px;
-  font-size: 8px;
-  color: #fff;
-  background: red;
-  border-radius: 50%;
-  padding: 3px;
-  width: 16px;
-  height: 16px;
-  top: -6px;
-  text-align: center;
-  line-height: 12px;
-}*/
 .side-cart-item-info__control button {
   display: block;
   color: #ffffff;
@@ -10636,4 +10611,11 @@ body {
 }
 .side-cart-item-info__control button:focus {
   outline: none;
+}
+
+.slick-arrow {
+  background: transparent;
+}
+.slick-arrow:before {
+  color: black;
 }
