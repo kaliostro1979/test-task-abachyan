@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import {cartURL, productsURL} from "@/js/react/url";
+import {productsURL} from "@/js/react/url";
 
 export const Context = React.createContext();
 
@@ -19,7 +19,7 @@ export const Provider = ({children})=>{
     },[])
 
     const productData = async ()=>{
-        await fetch(`${cartURL}`)
+        await fetch('/cart.js')
             .then(res => res.json())
             .then(data => {
                 setProducts(data.items)
