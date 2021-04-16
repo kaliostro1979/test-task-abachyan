@@ -6,14 +6,14 @@ import RecentlyProductItem from "@/js/react/components/recently-viewed-products/
 
 const RecentlyViewedProducts = () => {
 
-    const {allProducts} = useContext(Context)
+    const {allProducts, currency} = useContext(Context)
     const dataFromCookie = Cookies.get('shopify_recently_viewed')
     const recentlyViewedProductsArray = dataFromCookie.split(' ');
 
     const settings = {
         dots: true,
         speed: 500,
-        slidesToShow: 5,
+        slidesToShow: 6,
         slidesToScroll: 1,
         infinite: true,
         arrows: false,
@@ -43,6 +43,8 @@ const RecentlyViewedProducts = () => {
                                         handle={r.handle}
                                         image={r.image.src}
                                         title={r.title}
+                                        variants={r.variants}
+                                        currency={currency}
                                     />
                                 )
                             })

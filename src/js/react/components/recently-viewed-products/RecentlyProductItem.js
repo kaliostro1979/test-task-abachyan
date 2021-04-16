@@ -5,7 +5,7 @@ const RecentlyProductItem = (props)=>{
         <div className="rec-prod">
             <a href={props.handle}>
                 <img src={props.image}/>
-                <p>{props.title}</p>
+                <p>{props.title} - <span>{props.variants[0].price} {props.currency}</span></p>
             </a>
         </div>
     )

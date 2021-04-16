@@ -1,6 +1,6 @@
 import React, {useContext, useEffect} from 'react'
 import {Context} from "@/js/react/context/context";
-import {cartChanges} from "@/js/react/url";
+import {cartChanges} from "@/js/react/r-tools/url";
 import CartSubTotal from "@/js/react/components/cart/CartSubTotal";
 import CartQuantity from "@/js/react/components/cart/CartQuantity";
 import Overlay from "@/js/react/components/overlay/Overlay";

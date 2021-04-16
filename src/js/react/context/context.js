@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
-import {cartURL, productsJSON, productsURL} from "@/js/react/url";
-
+import {cartURL, productsJSON, productsURL} from "@/js/react/r-tools/url";
+import {currencies as Currencies } from '../r-tools/currencies'
 export const Context = React.createContext();
 
 export const Provider = ({children})=>{
@@ -14,12 +14,11 @@ export const Provider = ({children})=>{
     const [open, setOpen] = useState(false)
     const [quantity, setQuantity] = useState(0)
 
-
     useEffect(()=>{
         productData()
         getAllProducts()
-    },[open, productCount])
 
+    },[open, productCount])
 
 
     /*--- Get All Products in Cart ----*/
@@ -30,7 +29,11 @@ export const Provider = ({children})=>{
             .then(data => {
                 setProducts(data.items)
                 setProductCount(data.item_count)
-                setCurrency(data.currency)
+                Currencies.filter((c)=>{
+                    if (data.currency === c.name){
+                        setCurrency(c.symbol)
+                    }
+                })
                 setTotalPrice(data.total_price)
                 setIsClicked(false)
             })
