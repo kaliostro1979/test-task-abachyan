@@ -1,5 +1,10 @@
-import React, {useContext, useEffect, useMemo, useRef, useState} from 'react'
+import React, {useContext, useEffect} from 'react'
 import {Context} from "@/js/react/context/context";
+import {cartChanges} from "@/js/react/url";
+import CartSubTotal from "@/js/react/components/cart/CartSubTotal";
+import CartQuantity from "@/js/react/components/cart/CartQuantity";
+import Overlay from "@/js/react/components/overlay/Overlay";
+import CartProducts from "@/js/react/components/cart/CartProducts";
 
 
 const Cart = () => {
@@ -14,12 +19,11 @@ const Cart = () => {
         setProducts,
         setIsClicked,
         open,
-        setOpen
+        openSideCart,
+        closeSideCart,
+        setQuantity,
+        setProductCount
     } = useContext(Context)
-
-
-
-    const [quantity, setQuantity] = useState(0)
 
 
     const addButton = document.querySelector('.product-main__control-wrapper__add-to-cart-btn')
@@ -27,21 +31,10 @@ const Cart = () => {
     const sideCartIconCounter = document.querySelector('.shopping-card-icon__count')
     let body = document.querySelector('body')
 
-    const itemQuantity = useRef(null)
-
-
-    const openSideCart = ()=>{
-        setOpen(true)
-    }
-
-    const closeSideCart = ()=>{
-        setOpen(false)
-    }
-
-    useEffect(()=>{
-        if (open){
+    useEffect(() => {
+        if (open) {
             body.style.overflow = 'hidden'
-        }else{
+        } else {
             body.style.overflow = 'unset'
         }
         sideCartIconCounter.textContent = productCount.toString()
@@ -49,8 +42,8 @@ const Cart = () => {
     }, [open, isClicked, productCount])
 
 
-    const removeItem = async (id)=>{
-        await fetch('/cart/change.js',{
+    const removeItem = async (id) => {
+        await fetch(cartChanges, {
             method: 'POST',
             credentials: 'same-origin',
             headers: {
@@ -61,28 +54,29 @@ const Cart = () => {
                 "quantity": "0"
             })
         })
-            .then(res=>res.json())
-            .then(data=>{
+            .then(res => res.json())
+            .then(data => {
                 setProducts(data.items)
+                setProductCount(data.item_count)
             })
     }
 
-    const changeCartItemsQuantity = (e,id)=>{
-        let inputValue = e.target.parentElement.childNodes[1].value
-        if (e.target.name === 'increment'){
-            inputValue = parseInt(inputValue) + 1
+    const changeCartItemsQuantity = (e, id) => {
+        let inputValue = parseInt(e.target.parentElement.childNodes[1].value)
+        if (e.target.name === 'increment') {
+            inputValue = inputValue + 1
             setQuantity(inputValue)
         }
-        if (e.target.name === 'decrement'){
-            inputValue = parseInt(inputValue) - 1
+        if (e.target.name === 'decrement') {
+            inputValue = inputValue - 1
             setQuantity(inputValue)
         }
-        updateItemsQuantity(id, inputValue).then(()=>setIsClicked(true))
+        updateItemsQuantity(id, inputValue).then(() => setIsClicked(true))
     }
 
-    const updateItemsQuantity = async (id, qnty)=>{
+    const updateItemsQuantity = async (id, qnty) => {
 
-        await fetch('/cart/change.js',{
+        await fetch(cartChanges, {
             method: 'POST',
             credentials: 'same-origin',
             headers: {
@@ -93,89 +87,30 @@ const Cart = () => {
                 "quantity": `${qnty}`
             })
         })
-            .then(res=>res.json())
-            .then(data=>data)
+            .then(res => res.json())
+            .then(data => data)
     }
 
     addButton && addButton.addEventListener('click', openSideCart)
-    for (let i = 0; i < sideCartButton.length; i++){
+    for (let i = 0; i < sideCartButton.length; i++) {
         sideCartButton[i].addEventListener('click', openSideCart)
     }
 
+
+
+
     return (
         <>
-            <div className="overlay" style={{ display: open ? 'block' : 'none' }} onClick={closeSideCart}> </div>
-            <div className="side-cart__main" style={{ right: open ? 0 : '-360px' }}>
-                <div className="side-cart__quantity">
-                    <span>cart ({productCount})</span>
-                    <div className="side-cart__quantity__close" onClick={closeSideCart}>
-                        <svg width="26" height="25" viewBox="0 0 26 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <line x1="1.35355" y1="0.646452" x2="25.3535" y2="24.6464" stroke="#202020"/>
-                            <line x1="0.646447" y1="24.6464" x2="24.6464" y2="0.646442" stroke="#202020"/>
-                        </svg>
-                    </div>
-                </div>
-                <div className="side-cart__wrapper">
-                    {
-                        products && products.map((prod) => {
-                            return (
-                                <div className="side-cart-item mb-5" key={prod.id}>
-                                    <div className="side-cart-item__image" style={{ backgroundImage: `url(${prod.image})` }}> </div>
-                                    <div className="side-cart-item-info">
-                                        <div className="side-cart-item-info__title">
-                                            <a href={prod.url}><span>{prod.title}</span></a>
-                                        </div>
-                                        <div className="side-cart-item-info__quantity">
-                                            <span>Quantity: {prod.quantity}</span>
-                                        </div>
-                                        <div className="side-cart-item-info__price">
-                                            <span>{(prod.final_line_price/100).toFixed(2)} {currency}</span>
-                                        </div>
-
-                                        <div className="product-main__control-wrapper__counter">
-
-                                                <button className="product-main__control-wrapper__counter__btn decrement-btn"
-                                                        onClick={(e)=>changeCartItemsQuantity(e,prod.variant_id)}
-                                                        name="decrement"
-                                                >-</button>
-                                                <input
-                                                    className="quantity-value"
-                                                    min="1"
-                                                    type="number"
-                                                    id={prod.id}
-                                                    name="quantity"
-                                                    value={prod.quantity}
-                                                    ref={itemQuantity}
-                                                    onChange={(e)=>changeCartItemsQuantity(e,prod.variant_id)}
-                                                />
-                                                <button className="product-main__control-wrapper__counter__btn increment-btn"
-                                                        onClick={(e)=>changeCartItemsQuantity(e,prod.variant_id)}
-                                                        name="increment"
-                                                >+
-                                                </button>
-
-                                        </div>
-                                        <div className="side-cart-item-info__control">
-                                            <button onClick={()=>removeItem(prod.variant_id)}>Remove</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            )
-                        })
-                    }
-                </div>
-                <div className="side-cart__total">
-                    <div className="side-cart__total__value">
-                        <ul>
-                            <li><span>Subtotal</span></li>
-                            <li className="side-cart__total_price"><span>{(totalPrice/100).toFixed(2)} {currency}</span></li>
-                        </ul>
-                    </div>
-                    <div className="side-cart__total__btns">
-                        <a href="/cart">View cart</a>
-                        <a href="/checkout" className="btn btn--small-wide">Processed to checkout</a>
-                    </div>
-                </div>
+            <Overlay open={open} closeSideCart={closeSideCart}/>
+            <div className="side-cart__main" style={{right: open ? 0 : '-360px'}}>
+                <CartQuantity productCount={productCount} closeSideCart={closeSideCart}/>
+                <CartProducts
+                    products={products}
+                    changeCartItemsQuantity={changeCartItemsQuantity}
+                    currency={currency}
+                    removeItem={removeItem}
+                />
+                <CartSubTotal totalPrice={totalPrice} currency={currency}/>
             </div>
         </>
     )

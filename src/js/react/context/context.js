@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import {productsURL} from "@/js/react/url";
+import {cartURL, productsJSON, productsURL} from "@/js/react/url";
 
 export const Context = React.createContext();
 
@@ -12,17 +12,20 @@ export const Provider = ({children})=>{
     const [isClicked, setIsClicked] = useState(false)
     const [allProducts, setAllProducts] = useState([])
     const [open, setOpen] = useState(false)
+    const [quantity, setQuantity] = useState(0)
 
 
     useEffect(()=>{
         productData()
         getAllProducts()
-    },[open])
+    },[open, productCount])
 
 
+
+    /*--- Get All Products in Cart ----*/
 
     const productData = async ()=>{
-        await fetch('/cart.js')
+        await fetch(cartURL)
             .then(res => res.json())
             .then(data => {
                 setProducts(data.items)
@@ -33,14 +36,25 @@ export const Provider = ({children})=>{
             })
     }
 
-    console.log(products);
+
+    /*---- Get Store All Products ----*/
 
     const getAllProducts = async ()=>{
-        await fetch(`${productsURL + "/products.json"}`)
+        await fetch(`${productsURL + productsJSON}`)
             .then(res=>res.json())
             .then(data=>{
                 setAllProducts(data.products)
             })
+    }
+
+    /*---- Side Cart Control ----*/
+
+    const openSideCart = ()=>{
+        setOpen(true)
+    }
+
+    const closeSideCart = ()=>{
+        setOpen(false)
     }
 
 
@@ -57,7 +71,12 @@ export const Provider = ({children})=>{
             setIsClicked,
             allProducts,
             open,
-            setOpen
+            setOpen,
+            openSideCart,
+            closeSideCart,
+            setQuantity,
+            setProductCount
+
         }}>
             {children}
         </Context.Provider>

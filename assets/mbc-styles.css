@@ -10613,3 +10613,14 @@ body {
 .slick-arrow:before {
   color: black;
 }
+
+.rec-prod {
+  margin: 0 15px;
+}
+.rec-prod a:focus {
+  outline: none;
+}
+
+#recently-viewed {
+  margin: 50px 0;
+}

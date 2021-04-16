@@ -11,11 +11,14 @@ const RecentlyViewedProducts = () => {
     const recentlyViewedProductsArray = dataFromCookie.split(' ');
 
     const settings = {
+        dots: true,
         speed: 500,
         slidesToShow: 5,
         slidesToScroll: 1,
         infinite: true,
-        arrows: true
+        arrows: false,
+        autoplay: true,
+        autoplaySpeed: 3000
     };
 
     const recentArray = allProducts.filter((item) => {
@@ -30,7 +33,7 @@ const RecentlyViewedProducts = () => {
         <section data-section-type="recently-viewed" className="recently-viewed">
             <h2>Recently Viewed</h2>
             <div className="recently-container row">
-                <div className="col-lg-10 offset-1">
+                <div className="col-lg-12">
                     <Slider {...settings}>
                         {
                             recentArray.map((r) => {
