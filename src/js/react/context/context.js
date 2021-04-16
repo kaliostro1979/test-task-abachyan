@@ -11,12 +11,15 @@ export const Provider = ({children})=>{
     const [totalPrice, setTotalPrice] = useState(0)
     const [isClicked, setIsClicked] = useState(false)
     const [allProducts, setAllProducts] = useState([])
+    const [open, setOpen] = useState(false)
 
 
     useEffect(()=>{
         productData()
         getAllProducts()
-    },[])
+    },[open])
+
+
 
     const productData = async ()=>{
         await fetch('/cart.js')
@@ -29,6 +32,8 @@ export const Provider = ({children})=>{
                 setIsClicked(false)
             })
     }
+
+    console.log(products);
 
     const getAllProducts = async ()=>{
         await fetch(`${productsURL + "/products.json"}`)
@@ -50,7 +55,9 @@ export const Provider = ({children})=>{
             isClicked,
             setProducts,
             setIsClicked,
-            allProducts
+            allProducts,
+            open,
+            setOpen
         }}>
             {children}
         </Context.Provider>

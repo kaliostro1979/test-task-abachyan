@@ -10355,12 +10355,6 @@ body {
   margin-left: 20px;
 }
 
-.side-cart-item-info__price__original {
-  color: #B4B4B4;
-  text-decoration: line-through;
-  margin-left: 20px;
-}
-
 /*Own variables*/
 ::-webkit-scrollbar {
   width: 7px;
@@ -10380,7 +10374,7 @@ body {
   top: 0;
   bottom: 0;
   z-index: 3;
-  transition: 0.3s right linear;
+  transition: 0.5s right linear;
 }
 
 .side-cart__main.open-cart {

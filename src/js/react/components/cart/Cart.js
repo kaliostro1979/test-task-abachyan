@@ -1,41 +1,51 @@
-import React, {useContext, useEffect, useRef, useState} from 'react'
+import React, {useContext, useEffect, useMemo, useRef, useState} from 'react'
 import {Context} from "@/js/react/context/context";
 
 
 const Cart = () => {
 
-    const {products, productData, productCount, currency, totalPrice, isClicked, setProducts,setIsClicked} = useContext(Context)
+    const {
+        products,
+        productData,
+        productCount,
+        currency,
+        totalPrice,
+        isClicked,
+        setProducts,
+        setIsClicked,
+        open,
+        setOpen
+    } = useContext(Context)
 
 
-    const [open, setOpen] = useState(false)
+
     const [quantity, setQuantity] = useState(0)
 
 
     const addButton = document.querySelector('.product-main__control-wrapper__add-to-cart-btn')
     const sideCartButton = document.querySelectorAll('.shopping-card-icon')
     const sideCartIconCounter = document.querySelector('.shopping-card-icon__count')
-
+    let body = document.querySelector('body')
 
     const itemQuantity = useRef(null)
 
 
-
     const openSideCart = ()=>{
-        setTimeout(()=>{
-            setOpen(true)
-        },300)
+        setOpen(true)
     }
 
     const closeSideCart = ()=>{
         setOpen(false)
     }
 
-
-
-
     useEffect(()=>{
+        if (open){
+            body.style.overflow = 'hidden'
+        }else{
+            body.style.overflow = 'unset'
+        }
         sideCartIconCounter.textContent = productCount.toString()
-        productData().then()
+        productData()
     }, [open, isClicked, productCount])
 
 
@@ -57,7 +67,7 @@ const Cart = () => {
             })
     }
 
-    const incrementValue = (e,id)=>{
+    const changeCartItemsQuantity = (e,id)=>{
         let inputValue = e.target.parentElement.childNodes[1].value
         if (e.target.name === 'increment'){
             inputValue = parseInt(inputValue) + 1
@@ -120,13 +130,12 @@ const Cart = () => {
                                         </div>
                                         <div className="side-cart-item-info__price">
                                             <span>{(prod.final_line_price/100).toFixed(2)} {currency}</span>
-                                            <span className="side-cart-item-info__price__original">"Compair price"</span>
                                         </div>
 
                                         <div className="product-main__control-wrapper__counter">
 
                                                 <button className="product-main__control-wrapper__counter__btn decrement-btn"
-                                                        onClick={(e)=>incrementValue(e,prod.variant_id)}
+                                                        onClick={(e)=>changeCartItemsQuantity(e,prod.variant_id)}
                                                         name="decrement"
                                                 >-</button>
                                                 <input
@@ -137,10 +146,10 @@ const Cart = () => {
                                                     name="quantity"
                                                     value={prod.quantity}
                                                     ref={itemQuantity}
-                                                    onChange={(e)=>updateItemsQuantity(e,prod.variant_id)}
+                                                    onChange={(e)=>changeCartItemsQuantity(e,prod.variant_id)}
                                                 />
                                                 <button className="product-main__control-wrapper__counter__btn increment-btn"
-                                                        onClick={(e)=>incrementValue(e,prod.variant_id)}
+                                                        onClick={(e)=>changeCartItemsQuantity(e,prod.variant_id)}
                                                         name="increment"
                                                 >+
                                                 </button>

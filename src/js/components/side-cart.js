@@ -2,7 +2,7 @@ let sideCartBagButton = document.querySelectorAll('.shopping-card-icon')
 let sideCartCloseButton = document.querySelector('.side-cart__quantity__close')
 let sideCart = document.querySelector('.side-cart__main')
 let overlay = document.querySelector('.overlay')
-let body = document.querySelector('body')
+
 
 
 
@@ -13,6 +13,8 @@ let body = document.querySelector('body')
         body.classList.add('covered')
     })
 }*/
+
+
 
 sideCartCloseButton.addEventListener('click', ()=>{
     sideCart.classList.remove('open-cart')

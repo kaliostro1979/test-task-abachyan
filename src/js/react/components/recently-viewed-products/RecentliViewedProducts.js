@@ -2,7 +2,7 @@ import React, {useContext} from 'react'
 import Cookies from 'js-cookie';
 import {Context} from "@/js/react/context/context";
 import Slider from "react-slick";
-
+import RecentlyProductItem from "@/js/react/components/recently-viewed-products/RecentlyProductItem";
 
 const RecentlyViewedProducts = () => {
 
@@ -10,15 +10,13 @@ const RecentlyViewedProducts = () => {
     const dataFromCookie = Cookies.get('shopify_recently_viewed')
     const recentlyViewedProductsArray = dataFromCookie.split(' ');
 
-
     const settings = {
         speed: 500,
-        slidesToShow: 3,
-        slidesToScroll: 3,
+        slidesToShow: 5,
+        slidesToScroll: 1,
         infinite: true,
         arrows: true
     };
-
 
     const recentArray = allProducts.filter((item) => {
         for (let i = 0; i < recentlyViewedProductsArray.length; i++) {
@@ -37,16 +35,12 @@ const RecentlyViewedProducts = () => {
                         {
                             recentArray.map((r) => {
                                 return (
-
-                                    <div key={r.id} className="rec-prod">
-                                        <div className="product-image">
-                                            <img src={r.image.src}/>
-                                        </div>
-                                        <div className="product-title">
-                                            <a href={r.handle}>{r.title}</a>
-                                        </div>
-                                    </div>
-
+                                    <RecentlyProductItem
+                                        key={r.id}
+                                        handle={r.handle}
+                                        image={r.image.src}
+                                        title={r.title}
+                                    />
                                 )
                             })
                         }

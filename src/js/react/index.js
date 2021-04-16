@@ -1,14 +1,14 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import App from "@/js/react/components/App";
 import {Provider} from "@/js/react/context/context";
-import RecentlyViewedProducts from "@/js/react/components/RecentliViewedProducts";
+import Cart from "@/js/react/components/cart/Cart";
+
 
 
 ReactDOM.render(
     <React.StrictMode>
         <Provider>
-            <App/>
+            <Cart/>
         </Provider>
     </React.StrictMode>,
     document.getElementById('side-cart')
