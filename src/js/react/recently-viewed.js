@@ -3,11 +3,15 @@ import ReactDOM from "react-dom";
 import {Provider} from "@/js/react/context/context";
 import RecentlyViewedProducts from "@/js/react/components/RecentliViewedProducts";
 
-ReactDOM.render(
-    <React.StrictMode>
-            <Provider>
-                <RecentlyViewedProducts/>
-            </Provider>
-    </React.StrictMode>,
-    document.getElementById('recently-viewed')
-);
+
+const container = document.getElementById('recently-viewed')
+
+if (container){
+    ReactDOM.render(
+        <Provider>
+            <RecentlyViewedProducts/>
+        </Provider>,
+        container
+    );
+}
+

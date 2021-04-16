@@ -1,6 +1,5 @@
-import React, {useContext, useEffect, useMemo, useRef, useState} from 'react'
+import React, {useContext, useEffect, useRef, useState} from 'react'
 import {Context} from "@/js/react/context/context";
-import AddToCartForm from "@/js/react/components/AddToCartForm";
 
 
 const Cart = () => {

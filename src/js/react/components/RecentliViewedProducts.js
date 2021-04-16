@@ -16,9 +16,7 @@ const RecentlyViewedProducts = () => {
         slidesToShow: 3,
         slidesToScroll: 3,
         infinite: true,
-        arrows: true,
-        /*autoplay: true,
-        autoplaySpeed: 3000*/
+        arrows: true
     };
 
 

@@ -28,7 +28,7 @@
 
 <body class="{{ template | replace: '.', ' ' | truncatewords: 1, '' }}" id="{{ page_title | handle }}">
     {% comment %}{% render 'cart-side' %}{% endcomment %}
-    <div id="root"></div>
+    <div id="side-cart"></div>
     {% comment %}{% render 'overlay' %}{% endcomment %}
     {% section 'header' %}
     <div class="main">
